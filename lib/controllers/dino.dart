@@ -1,11 +1,12 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
-import '/game/enemy.dart';
-import '/game/dino_run.dart';
-import '/game/audio_manager.dart';
+import '/controllers/enemy.dart';
+import '/controllers/dino_run.dart';
+import '/controllers/audio_manager.dart';
 import '/models/player_data.dart';
 
 /// This enum represents the animation states of [Dino].
@@ -126,6 +127,10 @@ class Dino extends SpriteAnimationGroupComponent<DinoAnimationStates>
     // is not already in hit state.
     if ((other is Enemy) && (!isHit)) {
       hit();
+    } else if ((other is Enemy) && other.enemyData.isMushroom) {
+      // Increase player's health by 1 and remove the mushroom enemy.
+      game.playerData.lives = game.playerData.lives + 1;
+      other.removeFromParent();
     }
     super.onCollision(intersectionPoints, other);
   }

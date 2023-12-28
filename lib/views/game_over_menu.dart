@@ -3,11 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/widgets/hud.dart';
-import '/game/dino_run.dart';
-import '/widgets/main_menu.dart';
+import '/views/hud.dart';
+import '../controllers/dino_run.dart';
+import '/views/main_menu.dart';
 import '/models/player_data.dart';
-import '/game/audio_manager.dart';
+import '../controllers/audio_manager.dart';
 
 // This represents the game over overlay,
 // displayed with dino runs out of lives.

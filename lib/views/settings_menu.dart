@@ -3,10 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/game/dino_run.dart';
+import '../controllers/dino_run.dart';
 import '/models/settings.dart';
-import '/widgets/main_menu.dart';
-import '/game/audio_manager.dart';
+import '/views/main_menu.dart';
+import '../controllers/audio_manager.dart';
 
 // This represents the settings menu overlay.
 class SettingsMenu extends StatelessWidget {

@@ -7,17 +7,20 @@ import 'package:flame/parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 
-import '/game/dino.dart';
-import '/widgets/hud.dart';
+import '/controllers/dino.dart';
+import '../views/hud.dart';
 import '/models/settings.dart';
-import '/game/audio_manager.dart';
-import '/game/enemy_manager.dart';
+import '/controllers/audio_manager.dart';
+import '/controllers/enemy_manager.dart';
 import '/models/player_data.dart';
-import '/widgets/pause_menu.dart';
-import '/widgets/game_over_menu.dart';
+import '../views/pause_menu.dart';
+import '../views/game_over_menu.dart';
 
 // This is the main flame game class.
-class DinoRun extends FlameGame with TapDetector, HasCollisionDetection {
+class DinoRun extends FlameGame 
+with 
+TapDetector, 
+HasCollisionDetection {
   DinoRun({super.camera});
 
   // List of all the image assets.
@@ -25,7 +28,8 @@ class DinoRun extends FlameGame with TapDetector, HasCollisionDetection {
     'DinoSprites - tard.png',
     'AngryPig/Walk (36x30).png',
     'Bat/Flying (46x30).png',
-    'Rino/Run (52x34).png',
+    'Rino/Walk (38x24).png',
+    'Rino/Idle (32x32).png',
     'parallax/plx-1.png',
     'parallax/plx-2.png',
     'parallax/plx-3.png',

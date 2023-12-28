@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '/game/dino_run.dart';
-import '/game/audio_manager.dart';
+import '../controllers/dino_run.dart';
+import '../controllers/audio_manager.dart';
 import '/models/player_data.dart';
-import '/widgets/pause_menu.dart';
+import '/views/pause_menu.dart';
 
 // This represents the head up display in game.
 // It consists of, current score, high score,

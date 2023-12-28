@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flame/components.dart';
 
-import '/game/enemy.dart';
-import '/game/dino_run.dart';
+import '/controllers/enemy.dart';
+import '/controllers/dino_run.dart';
 import '/models/enemy_data.dart';
 
 // This class is responsible for spawning random enemies at certain
@@ -65,6 +65,7 @@ class EnemyManager extends Component with HasGameReference<DinoRun> {
           textureSize: Vector2(36, 30),
           speedX: 80,
           canFly: false,
+          isMushroom: false,
         ),
         EnemyData(
           image: game.images.fromCache('Bat/Flying (46x30).png'),
@@ -73,14 +74,25 @@ class EnemyManager extends Component with HasGameReference<DinoRun> {
           textureSize: Vector2(46, 30),
           speedX: 100,
           canFly: true,
+          isMushroom: false,
         ),
         EnemyData(
-          image: game.images.fromCache('Rino/Run (52x34).png'),
-          nFrames: 6,
+          image: game.images.fromCache('Rino/Walk (38x24).png'),
+          nFrames: 10,
           stepTime: 0.09,
-          textureSize: Vector2(52, 34),
+          textureSize: Vector2(38, 24),
           speedX: 150,
           canFly: false,
+          isMushroom: false,
+        ),
+        EnemyData(
+          image: game.images.fromCache('Rino/Idle (32x32).png'),
+          nFrames: 14,
+          stepTime: 0.1,
+          textureSize: Vector2(32, 32),
+          speedX: 70,
+          canFly: false,
+          isMushroom: true,
         ),
       ]);
     }

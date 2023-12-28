@@ -5,14 +5,14 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'widgets/hud.dart';
-import 'game/dino_run.dart';
+import 'views/hud.dart';
+import 'controllers/dino_run.dart';
 import 'models/settings.dart';
-import 'widgets/main_menu.dart';
+import 'views/main_menu.dart';
 import 'models/player_data.dart';
-import 'widgets/pause_menu.dart';
-import 'widgets/settings_menu.dart';
-import 'widgets/game_over_menu.dart';
+import 'views/pause_menu.dart';
+import 'views/settings_menu.dart';
+import 'views/game_over_menu.dart';
 
 Future<void> main() async {
   // Ensures that all bindings are initialized
