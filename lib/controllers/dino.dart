@@ -125,7 +125,7 @@ class Dino extends SpriteAnimationGroupComponent<DinoAnimationStates>
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     // Call hit only if other component is an Enemy and dino
     // is not already in hit state.
-    if ((other is Enemy) && (!isHit)) {
+    if ((other is Enemy) && (!isHit) && (!other.enemyData.isMushroom)) {
       hit();
     } else if ((other is Enemy) && other.enemyData.isMushroom) {
       // Increase player's health by 1 and remove the mushroom enemy.
