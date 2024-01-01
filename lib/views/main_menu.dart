@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '/views/hud.dart';
 import '../controllers/dino_run.dart';
@@ -8,13 +9,19 @@ import '/views/settings_menu.dart';
 
 // This represents the main menu overlay.
 class MainMenu extends StatelessWidget {
+  final user = FirebaseAuth.instance.currentUser!;
+
   // An unique identified for this overlay.
   static const id = 'MainMenu';
 
   // Reference to parent game.
   final DinoRun game;
 
-  const MainMenu(this.game, {Key? key}) : super(key: key);
+  MainMenu(this.game, {Key? key}) : super(key: key);
+
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +46,12 @@ class MainMenu extends StatelessWidget {
                     'Dino Run',
                     style: TextStyle(
                       fontSize: 50,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    "Logged IN as :"+ user.email!,
+                    style: TextStyle(
                       color: Colors.white,
                     ),
                   ),
@@ -67,6 +80,13 @@ class MainMenu extends StatelessWidget {
                       ),
                     ),
                   ),
+                  ElevatedButton(
+                    onPressed: signUserOut,
+                    child: Text (
+                    'Logout',
+                    style: TextStyle(fontSize: 30,
+                    ),
+                  ))
                 ],
               ),
             ),

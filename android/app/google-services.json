@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "988810755372",
+    "project_id": "dino-run-a1011",
+    "storage_bucket": "dino-run-a1011.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988810755372:android:3ae087e345f748e1a10089",
+        "android_client_info": {
+          "package_name": "com.example.dino_run"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988810755372-n3dleol1d7r8lf6u612f7b328mepm7hc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dino_run",
+            "certificate_hash": "2b4d005c5c8d6535da038d0a218f05f11a84031f"
+          }
+        },
+        {
+          "client_id": "988810755372-3ff8q17q20idhg0vfjh935tp12vtur27.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPE1-IscoxO-WRBmBpRVmZCI9IKoVQnFI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988810755372-3ff8q17q20idhg0vfjh935tp12vtur27.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "988810755372-6teu3iglhs14v2ukhasri69np88olhha.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dinoRun.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

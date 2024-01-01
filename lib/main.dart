@@ -1,9 +1,14 @@
+import 'package:dino_run/auth/pages/login_or_registerPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flame/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 
 import 'views/hud.dart';
 import 'controllers/dino_run.dart';
@@ -15,20 +20,17 @@ import 'views/settings_menu.dart';
 import 'views/game_over_menu.dart';
 
 Future<void> main() async {
-  // Ensures that all bindings are initialized
-  // before was start calling hive and flame code
-  // dealing with platform channels.
-  WidgetsFlutterBinding.ensureInitialized();
+  //await Flame.device.setPortrait();
 
-  // Initializes hive and register the adapters.
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await initHive();
   runApp(const DinoRunApp());
 }
 
-// This function will initilize hive with apps documents directory.
-// Additionally it will also register all the hive adapters.
 Future<void> initHive() async {
-  // For web hive does not need to be initialized.
   if (!kIsWeb) {
     final dir = await getApplicationDocumentsDirectory();
     Hive.init(dir.path);
@@ -38,7 +40,6 @@ Future<void> initHive() async {
   Hive.registerAdapter<Settings>(SettingsAdapter());
 }
 
-// The main widget for this game.
 class DinoRunApp extends StatelessWidget {
   const DinoRunApp({Key? key}) : super(key: key);
 
@@ -59,36 +60,45 @@ class DinoRunApp extends StatelessWidget {
           ),
         ),
       ),
-      home: Scaffold(
-        body: GameWidget<DinoRun>.controlled(
-          // This will dislpay a loading bar until [DinoRun] completes
-          // its onLoad method.
-          loadingBuilder: (conetxt) => const Center(
-            child: SizedBox(
-              width: 200,
-              child: LinearProgressIndicator(),
+      home: AuthWidget(),
+    );
+  }
+}
+
+class AuthWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return GameWidget<DinoRun>.controlled(
+            loadingBuilder: (context) => const Center(
+              child: SizedBox(
+                width: 200,
+                child: LinearProgressIndicator(),
+              ),
             ),
-          ),
-          // Register all the overlays that will be used by this game.
-          overlayBuilderMap: {
-            MainMenu.id: (_, game) => MainMenu(game),
-            PauseMenu.id: (_, game) => PauseMenu(game),
-            Hud.id: (_, game) => Hud(game),
-            GameOverMenu.id: (_, game) => GameOverMenu(game),
-            SettingsMenu.id: (_, game) => SettingsMenu(game),
-          },
-          // By default MainMenu overlay will be active.
-          initialActiveOverlays: const [MainMenu.id],
-          gameFactory: () => DinoRun(
-            // Use a fixed resolution camera to avoid manually
-            // scaling and handling different screen sizes.
-            camera: CameraComponent.withFixedResolution(
-              width: 360,
-              height: 180,
+            overlayBuilderMap: {
+              //AuthPage.id: (_, game) => AuthPage(game),
+              MainMenu.id: (_, game) => MainMenu(game),
+              PauseMenu.id: (_, game) => PauseMenu(game),
+              Hud.id: (_, game) => Hud(game),
+              GameOverMenu.id: (_, game) => GameOverMenu(game),
+              SettingsMenu.id: (_, game) => SettingsMenu(game),
+            },
+            initialActiveOverlays: const [MainMenu.id],
+            gameFactory: () => DinoRun(
+              camera: CameraComponent.withFixedResolution(
+                width: 360,
+                height: 180,
+              ),
             ),
-          ),
-        ),
-      ),
+          );
+        } else {
+          return LoginOrRegisterPage();
+        }
+      },
     );
   }
 }
