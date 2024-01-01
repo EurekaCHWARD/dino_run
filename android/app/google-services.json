@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "988810755372",
+    "firebase_url": "https://dino-run-a1011-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "dino-run-a1011",
     "storage_bucket": "dino-run-a1011.appspot.com"
   },
@@ -19,6 +20,14 @@
           "android_info": {
             "package_name": "com.example.dino_run",
             "certificate_hash": "2b4d005c5c8d6535da038d0a218f05f11a84031f"
+          }
+        },
+        {
+          "client_id": "988810755372-qigqgof1d2cfo6agc6894bg224tt6nd5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dino_run",
+            "certificate_hash": "4fe95b302050f01d71f8dd2f22d1f8d32b85c21a"
           }
         },
         {
